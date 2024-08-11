@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: e-commerce-order-app
+spec:
+  selector:
+    matchLabels:
+      app: e-commerce-order-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: e-commerce-order-app
+    spec:
+      containers:
+      - name: e-commerce-order-app
+        image: e-commerce-order-service:latest
+        ports:
+        - containerPort: 8082
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: e-commerce-product-app
+spec:
+  selector:
+    matchLabels:
+      app: e-commerce-product-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: e-commerce-product-app
+    spec:
+      containers:
+      - name: e-commerce-product-app
+        image: e-commerce-product-service:latest
+        ports:
+        - containerPort: 8081
